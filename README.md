@@ -3,6 +3,9 @@
 
 [![License](https://img.shields.io/badge/License-Unlicense%20-blue.svg)](https://opensource.org/licenses/Unlicense)
 
+![Screenshot](https://github.com/uglyb0nes/noeyeinteam/blob/master/src/TeamProfile.png)
+![Screenshot](https://github.com/uglyb0nes/noeyeinteam/blob/master/src/TeamProfileGen.png)
+
 ### [Walkthrough](https://drive.google.com/file/d/19IOShFTrLaDpGMSRy45hKibT0RFs5qGs/view)
 
 ## Table of Contents:
