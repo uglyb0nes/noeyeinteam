@@ -8,30 +8,30 @@ const employee = [];
 
 function init() {
     html();
-    member();
-};
+    addMember();
+}
 
-function member() {
+function addMember() {
     inquirer.prompt([
         {
             type: `input`,
-            message: `Member Name:`,
+            message: `Member Name: `,
             name: `name`,
         },
         {
             type: `list`,
-            message: `Member Role:`,
-            choices: [`Engineer`, `Intern`, `Manager`,],
+            message: `Member Role: `,
+            choices: [`Engineer`, `Intern`, `Manager`],
             name: `role`,
         },
         {
             type: `number`,
-            message: `Member ID`,
+            message: `Member ID: `,
             name: `id`,
         },
         {
             type: `input`,
-            message: `Member Email`,
+            message: `Member Email: `,
             name: `email`,
         },
     ])
@@ -48,13 +48,13 @@ function member() {
 
         inquirer.prompt([
             {
-                message: `Enter ${roleInfo}:`,
+                message: `Enter ${roleInfo}: `,
                 name: `roleInfo`,
             },
             {
                 type: `list`,
                 message: `Add Members?`,
-                choices: [`yes`, `no`,],
+                choices: [`yes`, `no`],
                 name: "newMember",
             },
         ]).then(function ({ roleInfo, newMember }) {
@@ -66,13 +66,13 @@ function member() {
             } else {
                 newTeamMember = new Manager(name, id, email, roleInfo);
             }
-            employee.push(newMember);
-            addHTML(newMember)
+            employee.push(newTeamMember);
+            addHTML(newTeamMember)
                 .then(function () {
                     if(newMember === `yes`) {
-                        member();
+                        addMember();
                     } else {
-                        finishHTML();
+                        endHTML();
                     }
                 })
         })
@@ -99,7 +99,7 @@ function html() {
             console.log(err);
         }
     });
-    console.log("Initiate");
+    console.log("start");
 }
 
 function addHTML(member) {
@@ -159,12 +159,12 @@ function addHTML(member) {
     });
 }
 
-function finishHTML() {
-    const html = ` </div>
+function endHTML() {
+    const html = `</div>
     </div>
     
-</body>
-</html>`;
+    </body>
+    </html>`;
 
     fs.appendFile("./dist/members.html", html, function (err) {
         if(err) {
