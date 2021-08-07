@@ -2,7 +2,7 @@ const Manager = require('../lib/managerClass');
 
 test ('getRole', () => {
     const testValue = 'Manager';
-    const e = newManager("Leigh", 7777, "leigh@hotmail.com", testValue);
+    const e = new Manager("Leigh", 7777, "leigh@hotmail.com", testValue);
     expect(e.getRole()).toBe(testValue);
 });
 
