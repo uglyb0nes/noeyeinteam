@@ -34,7 +34,7 @@ function member() {
             message: `Member Email`,
             name: `email`,
         },
-    ]);
+    ])
 
     .then(function ({ name, role, id, email }) {
         let roleInfo = "";
@@ -101,3 +101,77 @@ function html() {
     });
     console.log("Initiate");
 }
+
+function addHTML(member) {
+    return new Promise(function (resolve, reject) {
+        const name = member.getName();
+        const role = member.getRole();
+        const id = member.getID();
+        const email = member.getEmail();
+        let data = "";
+        if (role === "Engineer") {
+            const github = member.getGithub();
+            data = `<div class="col-4">
+            <div class="card mx-auto mb-3" style="width: 18rem">
+            <h1 class="card-header">Engineer</h1>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">ID: ${id}</li>
+                <li class="list-group-item">Name: ${name}</li>
+                <li class="list-group-item">Email Address: ${email}</li>
+                <li class="list-group-item">GitHub: ${github}</li>
+            </ul>
+            </div>
+        </div>`;
+        } else if (role === "Intern") {
+            const school = member.getSchool();
+            data = `<div class="col-4">
+            <div class="card mx-auto mb-3" style="width: 18rem">
+            <h1 class="card-header">Intern</h1>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">ID: ${id}</li>
+                <li class="list-group-item">Name: ${name}</li>
+                <li class="list-group-item">Email Address: ${email}</li>
+                <li class="list-group-item">School: ${school}</li>
+            </ul>
+            </div>
+        </div>`;
+        } else { 
+            const officeNumber = member.getOffice();
+            data = `<div class="col-4">
+            <div class="card mx-auto mb-3" style="width: 18rem">
+            <h1 class="card-header">Manager</h1>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">ID: ${id}</li>
+                <li class="list-group-item">Name: ${name}</li>
+                <li class="list-group-item">Email Address: ${email}</li>
+                <li class="list-group-item">Office Phone: ${officeNumber}</li>
+            </ul>
+            </div>
+        </div>`;
+        }
+        console.log("adding team member(s)");
+        fs.appendFile("./dist/members.html", data, function (err) {
+            if (err) {
+                return reject(err);
+            };
+            return resolve();
+        });
+    });
+}
+
+function finishHTML() {
+    const html = ` </div>
+    </div>
+    
+</body>
+</html>`;
+
+    fs.appendFile("./dist/members.html", html, function (err) {
+        if(err) {
+            console.log(err);
+        };
+    });
+    console.log("HTML is in dist folder.");
+};
+
+init();
